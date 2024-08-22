@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="motorcycle_registry_view_tree" model="ir.ui.view">
+        <field name="name">motorcycle.registry.view.tree</field>
+        <field name="model">motorcycle.registry</field>
+        <field name="arch" type="xml">
+            <tree string="Motorcycle Registry">
+                <field name="registry_number"/>
+                <field name="vin"/>
+                <field name="license_plate"/>
+                <field name="first_name"/>
+                <field name="last_name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="motorcycle_registry_view_form" model="ir.ui.view">
+        <field name="name">motorcycle.registry.view.form</field>
+        <field name="model">motorcycle.registry</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet string="Motorcycle Registry">
+               
+               <field name="vehicle_image" widget="image" class="oe_avatar"/>
+                    <div class="oe_title">
+                        <label for="registry_number" string="Registry Number"/>
+                        <h1>
+                            <div class="d-flex">
+                                <field class="text-break" name="registry_number" options="{'line_breaks': False}" widget="text" placeholder="e.g. MTR0001"/>
+                            </div>
+                        </h1>
+                    </div>
+                   <group>
+                     <group name="motorcycle_information" string="MOTORCYCLE INFORMATION">
+                        <field name="date_registry"/>
+                        <field name="vin" readonly="0"/>
+                        <field name="penalty"/>
+                        <field name="vin_fees"/>
+                        <field name="total_fees"/>
+                        <field name="current_mileage"/>
+                        <field name="license_plate"/>
+                        
+                        <field name="is_verified" groups="motorcycle_registry.group_motorcycle_admin"/>
+                        <field name="tag_ids" widget="many2many_tags" string="Tags"/>
+                    </group>
+                    <group name="owner_information" string="OWNER INFORMATION">
+                        <field name="first_name"/>
+                        <field name="last_name"/>
+                        <field name="owner_id"/>
+                        <field name="email"/>
+                        <field name="phone"/>
+                    </group>
+                    <notebook>
+                        <page name="related_documents" string="Related Documents">
+                            <field name="certificate_title"/>
+                        </page>
+                        <page name="vechicle_details" string="Vechicle Details">
+                        <!-- for compute task we need these fields to compute VIN -->
+                            <group>
+                                <field name="make"/>
+                                <field name="model"/>
+                                <field name="year"/>
+                                <field name="serial_number"/>
+                            </group>
+                        </page>
+                        <page name="ownership_transfer" string="Ownership Transfer">
+                            <field name="onwership_transfer_ids">
+                                <tree string="Ownership Transfers" editable="bottom">
+                                    <field name="transfer_date"/>
+                                    <field name="previous_owner"/>
+                                    <field name="new_owner"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                   </group>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="motorcycle_registry_view_search" model="ir.ui.view">
+        <field name="name">motorcycle.registry.view.search</field>
+        <field name="model">motorcycle.registry</field>
+        <field name="arch" type="xml">
+            <search string="Search Registry">
+                <field name="registry_number"/>
+                <field name="license_plate"/>
+                <field name="vin"/>
+                <field name="last_name"/>
+                <field name="active" invisible="1"/>
+                <filter string="Scrapped Motors" name="scrapped_motors" domain="[('active', '=', False)]"/>
+                <separator/>
+                <group string="Group By">
+                    <filter string="Registration Date" name="registration_date" domain="[]" context="{'group_by': 'date_registry'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+
+
+
+    <!-- <record id="sale_order_line_view_kanban" model="ir.ui.view">
+        <field name="name">sale.order.line.kanban</field>
+        <field name="model">sale.order.line</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_mobile">
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_content oe_kanban_global_click">
+                            <div class="row">
+                                <div class="col-12">
+                                <field name="display_name"/>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record> -->
+
+</odoo>

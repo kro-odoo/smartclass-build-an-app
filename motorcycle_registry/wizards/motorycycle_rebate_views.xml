@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="motorcycle_rebate_view_form" model="ir.ui.view">
+        <field name="name">motorcycle.rebate.view.form</field>
+        <field name="model">motorcycle.rebate</field>
+        <field name="arch" type="xml">
+            <form string="Set Rebate">
+                <sheet>
+                    <group>
+                        <field name="rebate" widget="percentage"/>
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="action_apply_rebate" class="btn-primary" type="object" string="Apply"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="motorcycle_rebate_wizard_action" model="ir.actions.act_window">
+        <field name="name">Set Rebate</field>
+        <field name="res_model">motorcycle.rebate</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

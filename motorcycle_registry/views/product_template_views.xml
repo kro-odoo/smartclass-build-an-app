@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="product_template_only_form_view" model="ir.ui.view">
+        <field name="name">product.template.form.inherit.motorcycle.registry</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='options']" position="inside">
+                <span class="d-inline-block">
+                    <field name="is_motorcycle"/>
+                    <label for="is_motorcycle"/>
+                </span>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="Motorcycle Data" name="motorcycle_data" invisible="is_motorcycle == False">
+                    <group>
+                        <group name="group_motorcycle_information">
+                            <field name="curb_weight" string="Curb Weight (Kg)"/>
+                            <field name="launch_date"/>
+                        </group>
+                        <group name="group_motor_information" string="Motor Information">
+                            <field name="horsepower"/>
+                            <field name="top_speed" string="Top Speed (mph)"/>
+                            <field name="torque" string="Torque (Nm)"/>
+                        </group>
+                        <group name="group_power_information" string="Power Information">
+                            <field name="battery_capacity"/>
+                            <field name="charge_time"/>
+                            <field name="range" string="Range (Km)"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>

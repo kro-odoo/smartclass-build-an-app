@@ -1,0 +1,63 @@
+<odoo>
+    <template id="report_motorcycle_registry">
+       <t t-foreach="docs" t-as="motorcycle">
+           <t t-call="web.html_container">
+               <t t-call="web.external_layout">
+                   <div class="page">
+                       <h2 class="text-center mt-4 mb-4">
+                           <strong>MotorCycle Registry Details </strong>
+                       </h2>
+                       <div class="row mt-4 mb-4">
+                            <div class="col-6 mt-2 mb-2">
+                                <div class="mt-2 mb-2">Firt Name: <t t-out="motorcycle.first_name"/></div>
+                                <div class="mt-2 mb-2">Last Name: <t t-out="motorcycle.last_name"/></div>
+                            </div>
+                            <div class="col-6">
+                                <div class="mt-2 mb-2">Date Registry: <t t-out="motorcycle.date_registry"/></div>
+                                <div class="mt-2 mb-2">Registry Number: <t t-out="motorcycle.registry_number"/></div>
+                            </div>
+                       </div>
+                       <h1 class="col-12 mt-4 mb-4" style="text-decoration: underline;">Vehicle Details</h1>
+                       <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="text-center" style="width: 30%" scope="col">License Plate</th>
+                                    <th class="text-center" style="width: 20%" scope="col">Model</th>
+                                    <th class="text-center" style="width: 50%" scope="col">Year</th>
+                                    <th class="text-center" style="width: 50%" scope="col">Serial Number</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <span t-out="motorcycle.license_plate">GJ18PJ7293</span>
+                                    </td>
+                                    <td>
+                                        <span t-out="motorcycle.model">VSX12</span>
+                                    </td>
+                                    <td>
+                                        <span t-out="motorcycle.year">2022</span>
+                                    </td>
+                                    <td>
+                                        <span t-out="motorcycle.serial_number">12356</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                       </table>
+                   </div>
+               </t>
+           </t>
+       </t>
+   </template>
+
+    <record id="action_report_motorcycle_registry" model="ir.actions.report">
+       <field name="name">Motorcycle Registry</field>
+       <field name="model">motorcycle.registry</field>
+       <field name="report_type">qweb-pdf</field>
+       <field name="report_name">motorcycle_registry.report_motorcycle_registry</field>
+       <field name="report_file">motorcycle_registry.report_motorcycle_registry</field>
+       <field name="print_report_name">'Motorcycle %s' % (object.registry_number)</field>
+       <field name="binding_model_id" ref="model_motorcycle_registry" />
+       <field name="binding_type">report</field>
+   </record>
+</odoo>

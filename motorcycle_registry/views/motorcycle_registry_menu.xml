@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>  
+    <record id="action_motorcycle_registry" model="ir.actions.act_window">
+        <field name="name">Motorcycle Registry</field>
+        <field name="res_model">motorcycle.registry</field>
+        <field name="view_mode">tree,form,search</field>
+        <!-- Apply default search criteria based on the registration_date, by default month will there-->
+        <field name="context">{'search_default_registration_date': 1}</field>
+    </record>
+
+<!-- tree view of tags -->
+    <record id="action_motorcycle_tags" model="ir.actions.act_window">
+        <field name="name">Motorcycle Tags</field>
+        <field name="res_model">motorcycle.tags</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <menuitem id="menu_root" name="Motorcycle Registry">
+        <menuitem id="registry_menu" name="Motorcycle Registry">
+            <menuitem id="model_menu_action_registry" name="Registry" action="action_motorcycle_registry"/>
+           
+        </menuitem>
+         <!-- add a new menu Configuration-Tags -->
+        <menuitem id="configuration_menu" name="Configuration">
+            <menuitem id="model_menu_action_tags" name="Tags" action="action_motorcycle_tags"/>
+        </menuitem>
+    </menuitem>
+</odoo>

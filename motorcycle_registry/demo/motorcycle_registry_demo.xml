@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="motorcycle_registry_1" model="motorcycle.registry">
+            <!-- <field name="active">True</field> -->
+            <field name="first_name">John</field>
+            <field name="last_name">Doe</field>
+            <field name="current_mileage">250</field>
+        </record>
+        <record id="motorcycle_registry_2" model="motorcycle.registry">
+            <!-- <field name="active">True</field> -->
+            <field name="first_name">Mitchell</field>
+            <field name="last_name">Admin</field>
+            <field name="current_mileage">5250</field>
+            <field name="date_registry">2024-12-27</field>
+        </record>
+    </data>
+</odoo>
